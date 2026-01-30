@@ -1,8 +1,10 @@
+import Board from "./components/Board" 
+
 const App = () => {
   return(
-    <div>
-      Hello world
-    </div>
+    <>
+      <Board/>
+    </>
   )
 }
 
