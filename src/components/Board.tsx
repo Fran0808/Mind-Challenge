@@ -8,7 +8,7 @@ const Board = () => {
   const [sequence, setSequence] = useState<number[]>([]);
   const [active, setActive] = useState<number | null>(null);
   const [userSequence, setUserSequence] = useState<number[]>([]);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);  
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
     addToSequence();
@@ -26,7 +26,7 @@ const Board = () => {
 
   const addToSequence = () => {
     const last = sequence[sequence.length - 1];
-    let randomIndex = Math.floor(Math.random() * size);    
+    let randomIndex = Math.floor(Math.random() * size);
 
     while (randomIndex === last) {
       randomIndex = Math.floor(Math.random() * size);
@@ -35,7 +35,6 @@ const Board = () => {
     setSequence((prev) => {
       return [...prev, randomIndex];
     });
-
   };
 
   const playSequence = () => {
@@ -50,8 +49,7 @@ const Board = () => {
 
   const handleClick = (clickedIndex: number) => {
     if (isPlaying) return;
-    
-    
+
     const newUserSequence = [...userSequence, clickedIndex];
     setUserSequence(newUserSequence);
 
@@ -73,15 +71,17 @@ const Board = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 grid-rows-3 gap-2 p-2 w-64 h-64">
-      {array.map((_, index: number) => (
-        <Square
-          key={index}
-          index={index}
-          isActive={active === index}
-          onClick={() => handleClick(index)}
-        />
-      ))}
+    <div className="flex justify-center items-center border-2">
+      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96 border-2">
+        {array.map((_, index: number) => (
+          <Square
+            key={index}
+            index={index}
+            isActive={active === index}
+            onClick={() => handleClick(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
