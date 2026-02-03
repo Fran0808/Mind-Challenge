@@ -66,7 +66,7 @@ const Board = () => {
     if (newUserSequence.length === sequence.length) {
       setTimeout(() => {
         addToSequence();
-      }, 500);
+      }, 600);
     }
   };
 
