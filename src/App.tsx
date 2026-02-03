@@ -1,9 +1,9 @@
-import Board from "./components/Board" 
+import StartScreen from "./components/StartScreen"
 
 const App = () => {
-  return(
+  return (
     <>
-      <Board/>
+      <StartScreen />
     </>
   )
 }
