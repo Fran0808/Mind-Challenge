@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { SquareInterface } from "../interfaces/Square";
 
-const Square = ({isActive, onClick }: SquareInterface) => {
+const Square = ({ index: _index, isActive, onClick }: SquareInterface) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const handleColor = () => {
