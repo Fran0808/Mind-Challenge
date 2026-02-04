@@ -1,5 +1,5 @@
 export interface SquareInterface {
   index: number;
   isActive: boolean;
-  onClick: () => void
+  onClick: () => void;
 }
