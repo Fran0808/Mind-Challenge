@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Square from "./Square";
+import GameOverScreen from "./GameOverScreen";
 
 const Board = () => {
   const size = 9;
@@ -9,6 +10,7 @@ const Board = () => {
   const [active, setActive] = useState<number | null>(null);
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   useEffect(() => {
     addToSequence();
@@ -49,6 +51,13 @@ const Board = () => {
     setTimeout(() => setIsPlaying(false), sequence.length * 1000);
   };
 
+  const handleRestart = () => {
+    setSequence([]);
+    setUserSequence([]);
+    setGameOver(false);
+    addToSequence();
+  }
+
   const handleClick = (clickedIndex: number) => {
     if (isPlaying) return;
 
@@ -58,10 +67,7 @@ const Board = () => {
     const currentIndex = newUserSequence.length - 1;
 
     if (clickedIndex !== sequence[currentIndex]) {
-      alert("Game Over");
-      setSequence([]);
-      setUserSequence([]);
-      addToSequence();
+      setGameOver(true);
       return;
     }
 
@@ -74,6 +80,7 @@ const Board = () => {
 
   return (
     <div className="flex justify-center items-center">
+      {gameOver && <GameOverScreen handleRestart={handleRestart} />}
       <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96">
         {array.map((_, index: number) => (
           <Square
