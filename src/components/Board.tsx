@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
 
@@ -11,6 +11,8 @@ const Board = () => {
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
+
+  const timeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
     addToSequence();
