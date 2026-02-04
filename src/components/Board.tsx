@@ -71,8 +71,8 @@ const Board = () => {
   };
 
   return (
-    <div className="flex justify-center items-center border-2">
-      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96 border-2">
+    <div className="flex justify-center items-center">
+      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96">
         {array.map((_, index: number) => (
           <Square
             key={index}
