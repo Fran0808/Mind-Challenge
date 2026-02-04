@@ -19,9 +19,11 @@ const Board = () => {
   }, [sequence]);
 
   useEffect(() => {
-    if (sequence.length > 0) {
-      playSequence();
-    }
+    setTimeout(() => {
+      if (sequence.length > 0) {
+        playSequence();
+      }
+    }, 1200);
   }, [sequence]);
 
   const addToSequence = () => {
