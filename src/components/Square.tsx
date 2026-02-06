@@ -1,10 +1,16 @@
 import { useState } from "react";
 import type { SquareInterface } from "../interfaces/Square";
+import { Howl } from 'howler';
 
 const Square = ({ index: _index, isActive, onClick }: SquareInterface) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
+  let square_click = new Howl({
+    src: ['sounds/square-click.wav']
+  })
+
   const handleColor = () => {
+    square_click.play();
     setIsClicked(true);
     onClick();
     setTimeout(() => setIsClicked(false), 200);
