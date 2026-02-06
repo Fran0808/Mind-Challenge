@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
 
@@ -11,8 +11,6 @@ const Board = () => {
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
-
-  const timeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
     addToSequence();
@@ -31,16 +29,15 @@ const Board = () => {
   }, [sequence]);
 
   const addToSequence = () => {
-    const last = sequence[sequence.length - 1];
-    let randomIndex = Math.floor(Math.random() * size);
+    setSequence(prev => {
+      const last = prev[prev.length - 1];
+      let randomIndex = Math.floor(Math.random() * size);
 
-    while (randomIndex === last) {
-      randomIndex = Math.floor(Math.random() * size);
-    }
-
-    setSequence((prev) => {
+      while (randomIndex === last) {
+        randomIndex = Math.floor(Math.random() * size);
+      }
       return [...prev, randomIndex];
-    });
+    })
   };
 
   const playSequence = () => {
@@ -56,6 +53,8 @@ const Board = () => {
   const handleRestart = () => {
     setSequence([]);
     setUserSequence([]);
+    setActive(null);
+    setIsPlaying(false);
     setGameOver(false);
     addToSequence();
   }
