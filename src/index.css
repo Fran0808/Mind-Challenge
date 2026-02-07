@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@layer utilities {
+    .shadow-glow-amber {
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+
+    .shadow-glow-amber-hover {
+        box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+    }
+
+    .bg-grid {
+        background-image:
+            linear-gradient(to right, #888 1px, transparent 1px),
+            linear-gradient(to bottom, #888 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
+
+    .bg-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.03;
+    }
+
+}
