@@ -21,7 +21,7 @@ const Square = ({ index: _index, isActive, onClick }: SquareInterface) => {
   return (
     <div
       onClick={handleColor}
-      className={`w-full h-full rounded-md cursor-pointer transition-all duration-75 ease-out ${isHighlighted ? "bg-green-400" : "bg-green-700"}`}
+      className={`w-full h-full rounded-md cursor-pointer transition-all duration-75 ease-out ${isHighlighted ? "bg-amber-300" : "bg-amber-600"}`}
     ></div>
   );
 };
