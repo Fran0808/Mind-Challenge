@@ -23,7 +23,15 @@ const StartScreen = () => {
                     </div>
                 </>
             ) : (
-                <Board />
+                <>
+                    <Board />
+                    <button
+                        className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
+                        onClick={() => setShow(false)}
+                    >
+                        HOME
+                    </button>
+                </>
             )}
         </div>
     )
