@@ -1,4 +1,6 @@
-const GameOverScreen = ({ handleRestart, score }: { handleRestart: () => void, score: number }) => {
+import type { GameOverInterface } from "../interfaces/GameOver";
+
+const GameOverScreen = ({ handleRestart, score }: GameOverInterface) => {
     return (
         <div className="absolute inset-0 z-50 bg-slate-950/60 backdrop-blur-lg flex flex-col justify-center items-center p-4">
             <div className="text-center">
