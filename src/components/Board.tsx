@@ -83,7 +83,7 @@ const Board = () => {
     <div className="flex justify-center items-center flex-col">
       <div className="text-4xl font-black ">Level {sequence.length}</div>
       <br />
-      {gameOver && <GameOverScreen handleRestart={handleRestart} />}
+      {gameOver && <GameOverScreen handleRestart={handleRestart} score={sequence.length} />}
       <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96">
         {array.map((_, index: number) => (
           <Square
