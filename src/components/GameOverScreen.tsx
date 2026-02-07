@@ -1,7 +1,21 @@
 const GameOverScreen = ({ handleRestart }: { handleRestart: () => void }) => {
     return (
-        <div className="absolute inset-0 bg-white bg-opacity-50 flex justify-center items-center">
-            <button className="text-4xl bg-blue-600 text-white font-bold rounded-md pt-2 pb-2 pl-8 pr-8 cursor-pointer" onClick={handleRestart}>Restart</button>
+        <div className="absolute inset-0 z-50 bg-slate-950/60 backdrop-blur-lg flex flex-col justify-center items-center p-4">
+            <div className="text-center">
+                <h2 className="text-6xl md:text-8xl font-black mb-2 bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl uppercase tracking-tighter">
+                    Game Over
+                </h2>
+                <br />
+                <div className="relative group inline-block">
+                    <div className="absolute -inset-1 bg-linear-to-r from-amber-600 to-orange-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300 animate-pulse-glow"></div>
+                    <button
+                        className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
+                        onClick={handleRestart}
+                    >
+                        TRY AGAIN
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
