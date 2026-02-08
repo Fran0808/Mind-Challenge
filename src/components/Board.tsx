@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
 
@@ -12,20 +12,30 @@ const Board = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
 
+  const playTimeOutRef = useRef<number | null>(null);
+  const timeoutsRef = useRef<number[]>([]);
+
   useEffect(() => {
     addToSequence();
   }, []);
 
   useEffect(() => {
-    console.log(sequence);
-  }, [sequence]);
 
-  useEffect(() => {
-    setTimeout(() => {
+    if (playTimeOutRef.current !== null) {
+      clearTimeout(playTimeOutRef.current);
+    }
+
+    playTimeOutRef.current = window.setTimeout(() => {
       if (sequence.length > 0) {
         playSequence();
       }
     }, 1200);
+
+    return () => {
+      if (playTimeOutRef.current !== null) {
+        clearTimeout(playTimeOutRef.current);
+      }
+    }
   }, [sequence]);
 
   const addToSequence = () => {
@@ -41,16 +51,34 @@ const Board = () => {
   };
 
   const playSequence = () => {
+    clearAllTimeouts();
     setIsPlaying(true);
     setUserSequence([]);
+
     sequence.forEach((index, i) => {
-      setTimeout(() => setActive(index), i * 1000);
-      setTimeout(() => setActive(null), i * 1000 + 1000);
+
+      const onId = window.setTimeout(() => {
+        setActive(index);
+      }, i * 1000);
+
+      const offId = window.setTimeout(() => {
+        setActive(null);
+      }, i * 1000 + 1000);
+
+      timeoutsRef.current.push(onId, offId);
+
     });
-    setTimeout(() => setIsPlaying(false), sequence.length * 1000);
+
+    const endId = window.setTimeout(() => {
+      setIsPlaying(false);
+    }, sequence.length * 1000);
+
+    timeoutsRef.current.push(endId);
+
   };
 
   const handleRestart = () => {
+    clearAllTimeouts();
     setSequence([]);
     setUserSequence([]);
     setActive(null);
@@ -68,6 +96,7 @@ const Board = () => {
     const currentIndex = newUserSequence.length - 1;
 
     if (clickedIndex !== sequence[currentIndex]) {
+      clearAllTimeouts();
       setGameOver(true);
       return;
     }
@@ -77,6 +106,13 @@ const Board = () => {
         addToSequence();
       }, 600);
     }
+  };
+
+  const clearAllTimeouts = () => {
+    timeoutsRef.current.forEach(timeoutId => {
+      clearTimeout(timeoutId);
+    });
+    timeoutsRef.current = [];
   };
 
   return (
