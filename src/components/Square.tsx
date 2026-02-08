@@ -2,15 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import type { SquareInterface } from "../interfaces/Square";
 import { Howl } from 'howler';
 
-const Square = ({ index: _index, isActive, onClick }: SquareInterface) => {
+const Square = ({ index: _index, isActive, onClick, sound }: SquareInterface) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const soundRef = useRef<Howl | null>(null);
 
   useEffect(() => {
-    soundRef.current = new Howl({
-      src: ["/sounds/square-click.wav"],
-    })
-  }, []);
+    soundRef.current = new Howl({ src: [sound] });
+    return () => {
+      soundRef.current?.unload();
+    };
+  }, [sound]);
 
   const isHighlighted = isActive || isClicked;
 
