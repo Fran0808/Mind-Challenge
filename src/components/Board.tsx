@@ -20,13 +20,16 @@ const Board = () => {
   }, []);
 
   useEffect(() => {
+    if (gameOver) return;
 
     if (playTimeOutRef.current !== null) {
       clearTimeout(playTimeOutRef.current);
     }
 
+    setIsPlaying(true);
+
     playTimeOutRef.current = window.setTimeout(() => {
-      if (sequence.length > 0) {
+      if (sequence.length > 0 && !gameOver) {
         playSequence();
       }
     }, 1200);
@@ -36,7 +39,7 @@ const Board = () => {
         clearTimeout(playTimeOutRef.current);
       }
     }
-  }, [sequence]);
+  }, [sequence, gameOver]);
 
   const addToSequence = () => {
     setSequence(prev => {
@@ -88,7 +91,7 @@ const Board = () => {
   }
 
   const handleClick = (clickedIndex: number) => {
-    if (isPlaying) return;
+    if (isPlaying || gameOver) return;
 
     const newUserSequence = [...userSequence, clickedIndex];
     setUserSequence(newUserSequence);
@@ -102,18 +105,27 @@ const Board = () => {
     }
 
     if (newUserSequence.length === sequence.length) {
-      setTimeout(() => {
+      const nextLevelTimeout = window.setTimeout(() => {
         addToSequence();
       }, 600);
+      timeoutsRef.current.push(nextLevelTimeout);
     }
   };
 
   const clearAllTimeouts = () => {
+    if (playTimeOutRef.current !== null) {
+      clearTimeout(playTimeOutRef.current);
+      playTimeOutRef.current = null;
+    }
     timeoutsRef.current.forEach(timeoutId => {
       clearTimeout(timeoutId);
     });
     timeoutsRef.current = [];
   };
+
+  useEffect(() => {
+    return () => clearAllTimeouts();
+  }, []);
 
   return (
     <div className="flex justify-center items-center flex-col">
