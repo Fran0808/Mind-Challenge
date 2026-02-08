@@ -15,6 +15,10 @@ const Board = () => {
   const playTimeOutRef = useRef<number | null>(null);
   const timeoutsRef = useRef<number[]>([]);
 
+  const route = (index: number) => {
+    return `/sounds/pad-${index}.wav`
+  }
+
   useEffect(() => {
     addToSequence();
   }, []);
@@ -139,6 +143,7 @@ const Board = () => {
             index={index}
             isActive={active === index}
             onClick={() => handleClick(index)}
+            sound={route(index)}
           />
         ))}
       </div>
