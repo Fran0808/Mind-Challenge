@@ -3,4 +3,5 @@ export interface SquareInterface {
   isActive: boolean;
   onClick: () => void;
   sound: string;
+  isPlaying: boolean;
 }
