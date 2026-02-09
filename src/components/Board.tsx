@@ -14,10 +14,15 @@ const Board = () => {
 
   const playTimeOutRef = useRef<number | null>(null);
   const timeoutsRef = useRef<number[]>([]);
+  const soundFailRef = useRef<Howl | null>(null);
 
   const route = (index: number) => {
     return `/sounds/pad-${index}.wav`
   }
+
+  useEffect(() => {
+    soundFailRef.current = new Howl({ src: ["/sounds/fail-sound.wav"] });
+  }, []);
 
   useEffect(() => {
     addToSequence();
@@ -105,6 +110,7 @@ const Board = () => {
     if (clickedIndex !== sequence[currentIndex]) {
       clearAllTimeouts();
       setGameOver(true);
+      soundFailRef.current?.play();
       return;
     }
 
