@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
 
+const SEQUENCE_START_DELAY = 50; // default: 1000
+const SQUARE_DISPLAY_DURATION = 200; // default: 1000
+const NEXT_LEVEL_DELAY = 500; // default: 600
+
 const Board = () => {
   const size = 9;
   const array = Array(size).fill(null);
@@ -41,7 +45,7 @@ const Board = () => {
       if (sequence.length > 0 && !gameOver) {
         playSequence();
       }
-    }, 1200);
+    }, SEQUENCE_START_DELAY);
 
     return () => {
       if (playTimeOutRef.current !== null) {
@@ -71,11 +75,11 @@ const Board = () => {
 
       const onId = window.setTimeout(() => {
         setActive(index);
-      }, i * 1000);
+      }, i * SQUARE_DISPLAY_DURATION);
 
       const offId = window.setTimeout(() => {
         setActive(null);
-      }, i * 1000 + 1000);
+      }, i * SQUARE_DISPLAY_DURATION + SQUARE_DISPLAY_DURATION);
 
       timeoutsRef.current.push(onId, offId);
 
@@ -83,7 +87,7 @@ const Board = () => {
 
     const endId = window.setTimeout(() => {
       setIsPlaying(false);
-    }, sequence.length * 1000);
+    }, sequence.length * SQUARE_DISPLAY_DURATION);
 
     timeoutsRef.current.push(endId);
 
@@ -117,7 +121,7 @@ const Board = () => {
     if (newUserSequence.length === sequence.length) {
       const nextLevelTimeout = window.setTimeout(() => {
         addToSequence();
-      }, 600);
+      }, NEXT_LEVEL_DELAY);
       timeoutsRef.current.push(nextLevelTimeout);
     }
   };
