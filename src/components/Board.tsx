@@ -144,6 +144,7 @@ const Board = () => {
             isActive={active === index}
             onClick={() => handleClick(index)}
             sound={route(index)}
+            isPlaying={isPlaying}
           />
         ))}
       </div>

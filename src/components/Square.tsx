@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import type { SquareInterface } from "../interfaces/Square";
 import { Howl } from 'howler';
 
-const Square = ({ index: _index, isActive, onClick, sound }: SquareInterface) => {
+const Square = ({ index: _index, isActive, onClick, sound, isPlaying }: SquareInterface) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const soundRef = useRef<Howl | null>(null);
 
@@ -22,6 +22,7 @@ const Square = ({ index: _index, isActive, onClick, sound }: SquareInterface) =>
   }, [isActive]);
 
   const handleColor = () => {
+    if (isPlaying) return;
     soundRef.current?.play();
     setIsClicked(true);
     onClick();
