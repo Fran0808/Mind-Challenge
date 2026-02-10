@@ -15,6 +15,8 @@ const Board = () => {
   const [userSequence, setUserSequence] = useState<number[]>([]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
+  const [lastScore, setLastScore] = useState<number>(0);
+  const [highScore, setHighScore] = useState<number>(0);
 
   const playTimeOutRef = useRef<number | null>(null);
   const timeoutsRef = useRef<number[]>([]);
@@ -23,6 +25,15 @@ const Board = () => {
   const route = (index: number) => {
     return `/sounds/pad-${index}.wav`
   }
+
+  useEffect(() => {
+    const storedHighScore = localStorage.getItem("highScore");
+
+    if (storedHighScore !== null) {
+      setHighScore(Number(storedHighScore));
+    }
+  }, []);
+
 
   useEffect(() => {
     soundFailRef.current = new Howl({ src: ["/sounds/fail-sound.wav"] });
@@ -114,6 +125,11 @@ const Board = () => {
     if (clickedIndex !== sequence[currentIndex]) {
       clearAllTimeouts();
       setGameOver(true);
+      setLastScore(sequence.length)
+      if (sequence.length > highScore) {
+        localStorage.setItem("highScore", String(sequence.length));
+        setHighScore(sequence.length)
+      }
       soundFailRef.current?.play();
       return;
     }
@@ -162,11 +178,11 @@ const Board = () => {
         <div className="absolute top-1/2 -translate-y-1/2 left-full ml-4 whitespace-nowrap flex flex-col gap-4">
           <div className="flex flex-col">
             <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest leading-none">Score</span>
-            <span className="text-3xl font-black text-white">0</span>
+            <span className="text-3xl font-black text-white">{lastScore}</span>
           </div>
           <div className="flex flex-col">
             <span className="text-amber-400 text-xs font-bold uppercase tracking-widest leading-none">Highest</span>
-            <span className="text-3xl font-black text-white">0</span>
+            <span className="text-3xl font-black text-white">{highScore}</span>
           </div>
         </div>
       </div>
