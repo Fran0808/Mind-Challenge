@@ -27,6 +27,15 @@ const Board = () => {
   }
 
   useEffect(() => {
+    const stored = localStorage.getItem("highScore");
+    const value = Number(stored);
+
+    if (!Number.isNaN(value)) {
+      setHighScore(value);
+    }
+  }, []);
+
+  useEffect(() => {
     const storedHighScore = localStorage.getItem("highScore");
 
     if (storedHighScore !== null) {
