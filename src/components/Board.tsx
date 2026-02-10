@@ -184,7 +184,7 @@ const Board = () => {
             />
           ))}
         </div>
-        <div className="absolute top-1/2 -translate-y-1/2 left-full ml-4 whitespace-nowrap flex flex-col gap-4">
+        <div className="flex flex-col gap-4 whitespace-nowrap items-center text-center mt-4 mb-6 md:absolute md:top-1/2 md:-translate-y-1/2 md:left-full md:ml-4 md:mt-0 md:mb-0">
           <div className="flex flex-col">
             <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest leading-none">Score</span>
             <span className="text-3xl font-black text-white">{lastScore}</span>
