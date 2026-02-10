@@ -146,17 +146,29 @@ const Board = () => {
       <div className="text-4xl font-black ">Level {sequence.length}</div>
       <br />
       {gameOver && <GameOverScreen handleRestart={handleRestart} score={sequence.length} />}
-      <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96">
-        {array.map((_, index: number) => (
-          <Square
-            key={index}
-            index={index}
-            isActive={active === index}
-            onClick={() => handleClick(index)}
-            sound={route(index)}
-            isPlaying={isPlaying}
-          />
-        ))}
+      <div className="relative">
+        <div className="grid grid-cols-3 grid-rows-3 gap-4 p-4 m-4 w-96 h-96">
+          {array.map((_, index: number) => (
+            <Square
+              key={index}
+              index={index}
+              isActive={active === index}
+              onClick={() => handleClick(index)}
+              sound={route(index)}
+              isPlaying={isPlaying}
+            />
+          ))}
+        </div>
+        <div className="absolute top-1/2 -translate-y-1/2 left-full ml-4 whitespace-nowrap flex flex-col gap-4">
+          <div className="flex flex-col">
+            <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest leading-none">Score</span>
+            <span className="text-3xl font-black text-white">0</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-amber-400 text-xs font-bold uppercase tracking-widest leading-none">Highest</span>
+            <span className="text-3xl font-black text-white">0</span>
+          </div>
+        </div>
       </div>
     </div>
   );
