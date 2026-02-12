@@ -13,10 +13,25 @@ const StartScreen = () => {
                     <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl">
                         MIND<br />CHALLENGE
                     </h1>
-                    <div className="text-lg text-indigo-200 justify-center flex gap-4 mb-10 mt-10">
-                        <div onClick={() => { setDifficulty("easy") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">EASY</div>
-                        <div onClick={() => { setDifficulty("medium") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">MEDIUM</div>
-                        <div onClick={() => { setDifficulty("hard") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">HARD</div>
+                    <div className="text-lg text-indigo-200 justify-center flex gap-10 mb-10 mt-10">
+                        <div
+                            onClick={() => setDifficulty("easy")}
+                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "easy" ? "bg-indigo-500" : "bg-indigo-800"}`}
+                        >
+                            EASY
+                        </div>
+                        <div
+                            onClick={() => setDifficulty("medium")}
+                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "medium" ? "bg-indigo-500" : "bg-indigo-800"}`}
+                        >
+                            MEDIUM
+                        </div>
+                        <div
+                            onClick={() => setDifficulty("hard")}
+                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "hard" ? "bg-indigo-500" : "bg-indigo-800"}`}
+                        >
+                            HARD
+                        </div>
                     </div>
                     <div className="relative group inline-block">
                         <div className="absolute -inset-1 bg-linear-to-r from-amber-600 to-orange-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300 animate-pulse-glow"></div>
