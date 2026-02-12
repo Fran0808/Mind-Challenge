@@ -11,7 +11,11 @@ const StartScreen = () => {
                     <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl">
                         MIND<br />CHALLENGE
                     </h1>
-
+                    <div>
+                        <div>Easy</div>
+                        <div>Medium</div>
+                        <div>Harder</div>
+                    </div>
                     <div className="relative group inline-block">
                         <div className="absolute -inset-1 bg-linear-to-r from-amber-600 to-orange-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300 animate-pulse-glow"></div>
                         <button
