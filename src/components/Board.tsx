@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
+import { SEQUENCE_START_DELAY, SQUARE_DISPLAY_DURATION, NEXT_LEVEL_DELAY } from "../ConfigGame";
 
-const SEQUENCE_START_DELAY = 1000; // default: 1000
-const SQUARE_DISPLAY_DURATION = 1000; // default: 1000
-const NEXT_LEVEL_DELAY = 600; // default: 600
 
 const Board = () => {
   const size = 9;
