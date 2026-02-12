@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
 import GameOverScreen from "./GameOverScreen";
-import { SEQUENCE_START_DELAY, SQUARE_DISPLAY_DURATION, NEXT_LEVEL_DELAY } from "../ConfigGame";
+import type { BoardInterface } from "../interfaces/Board";
+import { GAME_CONFIG } from "../ConfigGame";
 
-
-const Board = () => {
+const Board = ({ difficulty }: BoardInterface) => {
   const size = 9;
   const array = Array(size).fill(null);
+  const config = GAME_CONFIG[difficulty];
+
+  const SEQUENCE_START_DELAY = config.sequenceStartDelay;
+  const SQUARE_DISPLAY_DURATION = config.squareDisplayDuration;
+  const NEXT_LEVEL_DELAY = config.nextLevelDelay;
 
   const [sequence, setSequence] = useState<number[]>([]);
   const [active, setActive] = useState<number | null>(null);

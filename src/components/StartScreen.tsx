@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Board from "./Board";
+import type { Difficulty } from "../ConfigGame";
 
 const StartScreen = () => {
     const [show, setShow] = useState<boolean>(false);
+    const [difficulty, setDifficulty] = useState<Difficulty>("easy");
 
     return (
         <div className="text-center px-4">
@@ -12,9 +14,9 @@ const StartScreen = () => {
                         MIND<br />CHALLENGE
                     </h1>
                     <div className="text-lg text-indigo-200 justify-center flex gap-4 mb-10 mt-10">
-                        <div className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">EASY</div>
-                        <div className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">MEDIUM</div>
-                        <div className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">HARD</div>
+                        <div onClick={() => { setDifficulty("easy") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">EASY</div>
+                        <div onClick={() => { setDifficulty("medium") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">MEDIUM</div>
+                        <div onClick={() => { setDifficulty("hard") }} className="border border-indigo-600 rounded-xl px-6 py-2 bg-indigo-800 cursor-pointer">HARD</div>
                     </div>
                     <div className="relative group inline-block">
                         <div className="absolute -inset-1 bg-linear-to-r from-amber-600 to-orange-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300 animate-pulse-glow"></div>
@@ -28,7 +30,7 @@ const StartScreen = () => {
                 </>
             ) : (
                 <>
-                    <Board />
+                    <Board difficulty={difficulty} />
                     <button
                         className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
                         onClick={() => setShow(false)}
