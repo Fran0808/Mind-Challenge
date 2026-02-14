@@ -4,7 +4,7 @@ import type { Difficulty } from "../ConfigGame";
 
 const StartScreen = () => {
     const [show, setShow] = useState<boolean>(false);
-    const [difficulty, setDifficulty] = useState<Difficulty>("easy");
+    const [difficulty, setDifficulty] = useState<Difficulty>("medium");
 
     return (
         <div className="text-center px-4">
@@ -15,10 +15,10 @@ const StartScreen = () => {
                     </h1>
                     <div className="text-lg text-indigo-200 justify-center flex gap-10 mb-10 mt-10">
                         <div
-                            onClick={() => setDifficulty("easy")}
-                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "easy" ? "bg-indigo-500" : "bg-indigo-800"}`}
+                            onClick={() => setDifficulty("slow")}
+                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "slow" ? "bg-indigo-500" : "bg-indigo-800"}`}
                         >
-                            EASY
+                            SLOW
                         </div>
                         <div
                             onClick={() => setDifficulty("medium")}
@@ -27,10 +27,10 @@ const StartScreen = () => {
                             MEDIUM
                         </div>
                         <div
-                            onClick={() => setDifficulty("hard")}
-                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "hard" ? "bg-indigo-500" : "bg-indigo-800"}`}
+                            onClick={() => setDifficulty("fast")}
+                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "fast" ? "bg-indigo-500" : "bg-indigo-800"}`}
                         >
-                            HARD
+                            FAST
                         </div>
                     </div>
                     <div className="relative group inline-block">
