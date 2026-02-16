@@ -4,8 +4,8 @@ const GameOverScreen = ({ handleRestart, score }: GameOverInterface) => {
     return (
         <div className="absolute inset-0 z-50 bg-slate-950/60 backdrop-blur-lg flex flex-col justify-center items-center p-4">
             <div className="text-center">
-                <h2 className="text-6xl md:text-8xl font-black mb-2 bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl uppercase tracking-tighter">
-                    Game Over
+                <h2 className="text-6xl md:text-8xl font-black mb-2 bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl tracking-tighter">
+                    GAME OVER
                 </h2>
                 <h3 className="text-3xl font-bold text-white"> Level {score}</h3>
                 <br />
