@@ -33,7 +33,9 @@ const Square = ({ index: _index, isActive, onClick, sound, isPlaying }: SquareIn
   return (
     <div
       onClick={handleColor}
-      className={`w-full h-full rounded-md ${isPlaying ? "cursor-default" : "cursor-pointer"} transition-all duration-75 ease-out ${isHighlighted ? "bg-amber-300" : "bg-amber-600"}`}
+      className={`w-full h-full rounded-md transition-all duration-75 ease-out
+        ${isPlaying ? "cursor-default" : "cursor-pointer"} 
+        ${isHighlighted ? "bg-linear-to-t from-amber-300 to-orange-300" : "bg-linear-to-t from-amber-600 to-orange-600"}`}
     ></div>
   );
 };
