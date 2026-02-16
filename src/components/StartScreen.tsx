@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Board from "./Board";
 import type { Difficulty } from "../ConfigGame";
-import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import type { StartScreenInterface } from "../interfaces/StartScreen";
 
-const StartScreen = () => {
+const StartScreen = ({ isMuted, setIsMuted }: StartScreenInterface) => {
     const [show, setShow] = useState<boolean>(false);
     const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-    const [isMuted, setIsMuted] = useState<boolean>(false);
 
     return (
         <div className="text-center px-4">
@@ -47,7 +46,7 @@ const StartScreen = () => {
                 </>
             ) : (
                 <>
-                    <Board difficulty={difficulty} />
+                    <Board difficulty={difficulty} isMuted={isMuted} setIsMuted={setIsMuted} />
                     <button
                         className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
                         onClick={() => setShow(false)}
@@ -56,16 +55,6 @@ const StartScreen = () => {
                     </button>
                 </>
             )}
-            <button
-                onClick={() => { setIsMuted(!isMuted) }}
-                className="fixed bottom-8 left-8 cursor-pointer p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:bg-white/10 hover:scale-110 active:scale-95 transition-all duration-300 z-50"
-            >
-                {isMuted ? (
-                    <FaVolumeMute size={28} />
-                ) : (
-                    <FaVolumeUp size={28} />
-                )}
-            </button>
         </div>
     )
 }
