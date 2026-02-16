@@ -7,7 +7,11 @@ const Square = ({ index: _index, isActive, onClick, sound, isPlaying }: SquareIn
   const soundRef = useRef<Howl | null>(null);
 
   useEffect(() => {
-    soundRef.current = new Howl({ src: [sound] });
+    if (sound) {
+      soundRef.current = new Howl({ src: [sound] });
+    } else {
+      soundRef.current = null;
+    }
     return () => {
       soundRef.current?.unload();
     };
