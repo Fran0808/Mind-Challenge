@@ -49,8 +49,16 @@ const Board = ({ difficulty, isMuted }: BoardInterface) => {
 
 
   useEffect(() => {
-    soundFailRef.current = new Howl({ src: ["/sounds/fail-sound.wav"] });
-  }, []);
+    if (!isMuted) {
+      soundFailRef.current = new Howl({ src: ["/sounds/fail-sound.wav"] });
+    } else {
+      soundFailRef.current?.unload();
+      soundFailRef.current = null;
+    }
+    return () => {
+      soundFailRef.current?.unload();
+    };
+  }, [isMuted]);
 
   useEffect(() => {
     addToSequence();
