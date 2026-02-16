@@ -4,7 +4,7 @@ import GameOverScreen from "./GameOverScreen";
 import type { BoardInterface } from "../interfaces/Board";
 import { GAME_CONFIG } from "../ConfigGame";
 
-const Board = ({ difficulty }: BoardInterface) => {
+const Board = ({ difficulty, isMuted }: BoardInterface) => {
   const size = 9;
   const array = Array(size).fill(null);
   const config = GAME_CONFIG[difficulty];
@@ -26,6 +26,7 @@ const Board = ({ difficulty }: BoardInterface) => {
   const soundFailRef = useRef<Howl | null>(null);
 
   const route = (index: number) => {
+    if (isMuted) return;
     return `/sounds/pad-${index}.wav`
   }
 
