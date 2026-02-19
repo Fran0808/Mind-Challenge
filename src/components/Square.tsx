@@ -39,7 +39,7 @@ const Square = ({ index: _index, isActive, onClick, sound, isPlaying }: SquareIn
       onClick={handleColor}
       className={`w-full h-full rounded-md transition-all duration-75 ease-out
         ${isPlaying ? "cursor-default" : "cursor-pointer"} 
-        ${isHighlighted ? "bg-linear-to-t from-amber-300 to-orange-300" : "bg-linear-to-t from-amber-600 to-orange-600"}`}
+        ${isHighlighted ? "bg-linear-to-t from-amber-300 to-orange-400" : "bg-linear-to-t from-amber-600 to-orange-700"}`}
     ></div>
   );
 };
