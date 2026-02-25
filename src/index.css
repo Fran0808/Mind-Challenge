@@ -13,7 +13,7 @@
         background-image:
             linear-gradient(to right, #888 1px, transparent 1px),
             linear-gradient(to bottom, #888 1px, transparent 1px);
-        background-size: 30px 30px;
+        background-size: 35px 35px;
     }
 
     .bg-overlay {
@@ -37,7 +37,21 @@
         }
     }
 
+    @keyframes animated-grid {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 35px 35px;
+        }
+    }
+
     .animate-pulse-glow {
         animation: pulse-glow 3s infinite;
+    }
+
+    .animate-grid {
+        animation: animated-grid 1s linear infinite;
     }
 }
