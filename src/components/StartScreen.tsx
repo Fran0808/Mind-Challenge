@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Board from "./Board";
 import type { Difficulty } from "../ConfigGame";
-import type { StartScreenInterface } from "../interfaces/StartScreen";
 
-const StartScreen = ({ isMuted }: StartScreenInterface) => {
+const StartScreen = ({ isMuted }: { isMuted: boolean }) => {
     const [show, setShow] = useState<boolean>(false);
     const [difficulty, setDifficulty] = useState<Difficulty>("medium");
 
