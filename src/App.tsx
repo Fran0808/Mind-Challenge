@@ -1,5 +1,5 @@
-import SoundButton from "./components/SoundButton";
-import StartScreen from "./components/StartScreen"
+import SoundButton from "./components/ui/SoundButton";
+import StartScreen from "./screens/StartScreen"
 import { useState } from "react";
 
 const App = () => {

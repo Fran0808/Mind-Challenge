@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import type { SquareInterface } from "../interfaces/Square";
+import type { SquareInterface } from "../../interfaces/Square";
 import { Howl } from 'howler';
 
 const Square = ({ index: _index, isActive, onClick, sound, isPlaying }: SquareInterface) => {

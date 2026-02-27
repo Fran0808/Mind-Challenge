@@ -1,5 +1,5 @@
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
-import type { SoundControlInterface } from "../interfaces/SoundControl";
+import type { SoundControlInterface } from "../../interfaces/SoundControl";
 
 const SoundButton = ({ setIsMuted, isMuted }: SoundControlInterface) => {
     return (

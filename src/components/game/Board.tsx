@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Square from "./Square";
-import GameOverScreen from "./GameOverScreen";
-import type { BoardInterface } from "../interfaces/Board";
-import { GAME_CONFIG } from "../ConfigGame";
+import GameOverScreen from "../../screens/GameOverScreen";
+import type { BoardInterface } from "../../interfaces/Board";
+import { GAME_CONFIG } from "../../ConfigGame";
 
 const Board = ({ difficulty, isMuted }: BoardInterface) => {
   const size = 9;
