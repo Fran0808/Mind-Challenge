@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Layout from "./layouts/Layout"
 import StartScreen from "./screens/StartScreen"
 import SequenceMemoryScreen from "./screens/SequenceMemoryScreen"
+import NotFoundScreen from "./screens/NotFoundScreen"
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<StartScreen />} />
           <Route path="sequence" element={<SequenceMemoryScreen />} />
-          <Route path="*" element={<h1>Not Found 404</h1>} />
+          <Route path="*" element={<NotFoundScreen />} />
         </Route>
       </Routes>
     </BrowserRouter>
