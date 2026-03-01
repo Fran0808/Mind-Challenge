@@ -1,15 +1,20 @@
-import SoundButton from "./components/ui/SoundButton";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Layout from "./layouts/Layout"
 import StartScreen from "./screens/StartScreen"
-import { useState } from "react";
+import SequenceMemoryScreen from "./screens/SequenceMemoryScreen"
 
 const App = () => {
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900 overflow-hidden text-white">
-      <StartScreen isMuted={isMuted} />
-      <div className="bg-overlay bg-grid animate-grid"></div>
-      <SoundButton setIsMuted={setIsMuted} isMuted={isMuted} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<StartScreen />} />
+          <Route path="sequence" element={<SequenceMemoryScreen />} />
+          <Route path="*" element={<h1>Not Found 404</h1>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
