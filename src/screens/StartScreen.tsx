@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const StartScreen = () => {
     return (
@@ -9,9 +10,11 @@ const StartScreen = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl px-4">
                 <div className="relative group">
                     <div className="absolute -inset-1 bg-linear-to-r from-lime-500 to-emerald-600 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-300"></div>
-                    <button className="relative w-full px-8 py-6 bg-linear-to-r from-lime-500 to-emerald-600 font-black text-xl rounded-xl transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-lime-300/30 tracking-widest">
-                        SEQUENCE MEMORY
-                    </button>
+                    <Link to="/sequence">
+                        <button className="relative w-full px-8 py-6 bg-linear-to-r from-lime-500 to-emerald-600 font-black text-xl rounded-xl transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-lime-300/30 tracking-widest">
+                            SEQUENCE MEMORY
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="relative group">
