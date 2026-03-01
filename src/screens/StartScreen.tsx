@@ -1,59 +1,28 @@
-import { useState } from "react";
-import Board from "../components/game/Board";
-import type { Difficulty } from "../ConfigGame";
+import { useOutletContext } from "react-router-dom";
 
-const StartScreen = ({ isMuted }: { isMuted: boolean }) => {
-    const [show, setShow] = useState<boolean>(false);
-    const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-
+const StartScreen = () => {
+    const { isMuted } = useOutletContext<{ isMuted: boolean }>();
     return (
-        <div className="text-center px-4">
-            {!show ? (
-                <>
-                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-linear-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent drop-shadow-2xl">
-                        MIND<br />CHALLENGE
-                    </h1>
-                    <div className="text-lg text-indigo-200 justify-center flex gap-10 mb-10 mt-10">
-                        <div
-                            onClick={() => setDifficulty("slow")}
-                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "slow" ? "bg-indigo-500" : "bg-indigo-800"}`}
-                        >
-                            SLOW
-                        </div>
-                        <div
-                            onClick={() => setDifficulty("medium")}
-                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "medium" ? "bg-indigo-500" : "bg-indigo-800"}`}
-                        >
-                            MEDIUM
-                        </div>
-                        <div
-                            onClick={() => setDifficulty("fast")}
-                            className={`border border-indigo-600 hover:border-indigo-400 rounded-xl px-6 py-2 cursor-pointer transition-colors ${difficulty === "fast" ? "bg-indigo-500" : "bg-indigo-800"}`}
-                        >
-                            FAST
-                        </div>
-                    </div>
-                    <div className="relative group inline-block">
-                        <div className="absolute -inset-1 bg-linear-to-r from-amber-600 to-orange-400 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-300 animate-pulse-glow"></div>
-                        <button
-                            className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
-                            onClick={() => setShow(true)}
-                        >
-                            START GAME
-                        </button>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <Board difficulty={difficulty} isMuted={isMuted} />
-                    <button
-                        className="relative px-12 py-4 bg-linear-to-r from-amber-500 to-orange-500 text-white font-black text-2xl rounded-xl shadow-glow-amber hover:shadow-glow-amber-hover transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-amber-300/30"
-                        onClick={() => setShow(false)}
-                    >
-                        HOME
+        <div className="text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-linear-to-r from-white via-indigo-200 to-indigo-300 bg-clip-text text-transparent mb-12">
+                MIND<br />CHALLENGE
+            </h1>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl px-4">
+                <div className="relative group">
+                    <div className="absolute -inset-1 bg-linear-to-r from-lime-500 to-emerald-600 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-300"></div>
+                    <button className="relative w-full px-8 py-6 bg-linear-to-r from-lime-500 to-emerald-600 font-black text-xl rounded-xl transform hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-lime-300/30 tracking-widest">
+                        SEQUENCE MEMORY
                     </button>
-                </>
-            )}
+                </div>
+
+                <div className="relative group">
+                    <div className="absolute -inset-1 bg-linear-to-r from-slate-600 to-slate-800 rounded-xl opacity-10 group-hover:opacity-40 transition duration-300"></div>
+                    <button className="relative w-full px-8 py-6 bg-linear-to-r from-slate-700 to-slate-900 font-black text-xl rounded-xl border border-white/5 tracking-widest grayscale">
+                        COMING SOON
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
