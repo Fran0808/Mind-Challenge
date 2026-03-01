@@ -1,7 +1,5 @@
-import { useOutletContext } from "react-router-dom";
 
 const StartScreen = () => {
-    const { isMuted } = useOutletContext<{ isMuted: boolean }>();
     return (
         <div className="text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-linear-to-r from-white via-indigo-200 to-indigo-300 bg-clip-text text-transparent mb-12">
